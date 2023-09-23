@@ -59,7 +59,6 @@ class Customers(models.Model):
 class Artists(models.Model):
     '''
         Informations about the table artists
-        Notice that CamelCase is exceptionnaly used for matching with sample.db
     '''
     id          = models.AutoField(primary_key=True, db_column='ArtistId')
     name        = models.CharField(max_length=120, null=False, db_column="Name")
