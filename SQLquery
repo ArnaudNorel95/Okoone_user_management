@@ -1,0 +1,4 @@
+SELECT i.CustomerId, c.FirstName, SUM(i.Total)
+FROM invoices AS i
+JOIN Customers AS c ON i.CustomerId = c.CustomerId
+GROUP BY i.CustomerId, c.FirstName;
