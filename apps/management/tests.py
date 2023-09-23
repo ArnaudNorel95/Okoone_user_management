@@ -176,8 +176,15 @@ class ArtistModelTest(TestCase):
         self.assertEqual(artist.name, "50 Cent")
 
 class ArtistApiTest(TestCase):
-    def setup(self):
+    def setUp(self):
         self.client = APIClient()
         self.sample_artist_data = {
             "name": "Eminem"
         }
+        self.url_list = reverse("artists-list")
+                
+    def test_create_artist(self):
+        response = self.client.post(self.url_list, data=self.sample_artist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Artists.objects.count(), 1)
+        self.assertEqual(response.json()["name"], "Eminem")
