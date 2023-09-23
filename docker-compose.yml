@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13.1  # Use your desired PostgreSQL version
+    environment:
+      POSTGRES_SERVICE: postgresdb
+      POSTGRES_DB: sample_db  # Change to your database name
+      POSTGRES_USER: arno  # Change to your database user
+      POSTGRES_PASSWORD: EmployeeManagement  # Change to your database password
+    ports:
+      - "5432:5432"  # Map the container port to your host machine
