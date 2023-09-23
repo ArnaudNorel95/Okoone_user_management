@@ -10,7 +10,7 @@ from datetime import datetime
 class CustomerModelTest(TestCase):
     def test_user_creation(self):
         """
-            Ensure we can create a new Customer object in Database.
+            Ensure Customer is working - Database Side.
         """
         employee = Employees.objects.create(
             first_name  = "Adams",
@@ -48,41 +48,38 @@ class CustomerModelTest(TestCase):
         self.assertEqual(customer.email, "arnaudnorel@yahoo.fr")
         self.assertEqual(customer.support_employee.last_name, "Andrew")
 
+class CustomerApiTest(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        employee = Employees.objects.create(
+            first_name  = "Adams",
+            last_name   = "Andrew",
+            title       = "General Manager",
+            birth_date  = "1947-09-19 00:00:00",
+            hire_date   = "2003-05-03 00:00:00",
+            email       = "adamsandrew@yahoo.fr"
+        )
+        self.sample_customer_data = {
+            "first_name":"Arnaud",
+            "last_name":"Norel",
+            "company":"Test",
+            "address":"12th 68 Nyc",
+            "city":"NYC",
+            "state":"NY state",
+            "country":"USA",
+            "postal_code":"4512",
+            "phone":"+3346489",
+            "fax":"+3367891",
+            "email":"arnaudnorel@yahoo.fr",
+            "support_employee":employee.id
+        }
 
+        self.url = reverse("customers-list")    
 
-
-# class UserApiTest(TestCase):
-#     def setUp(self):
-#         self.client = APIClient()
-#         self.sample_user_data = {
-#             "username":"arnaud_norel",
-#             "password":"azrtyuiop",
-#             "email":"arnaudnorel95@gmail.com",
-#             "company":"Natixis"
-#         }
-#         ## In a first time create a test user to be allowed to access Handle User View   
-#         self.user = User.objects.create_user(username='testuser', password='testpassword', is_staff=True)
-#         login_url = reverse("token_obtain_pair")
-#         response = self.client.post(login_url, {"username":"testuser", "password":"testpassword"})
-#         ## Then login and get a token access
-#         self.token = response.json()['access']        
-#         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + str(self.token))
-#         self.url = reverse("apps.gitcastle:user")
-
-#     def test_create_artist(self):
-#         """
-#             Ensure we can create a new User via API.
-#         """
-#         response = self.client.post(self.url, self.sample_user_data, format='json')
-#         saved_user = User.objects.last()
-#         print("ID OF THE CON : ", saved_user.pk)
-
-#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-#         self.assertEqual(User.objects.count(), 2)
-#         self.assertEqual(saved_user.username, 'arnaud_norel')
-#         self.assertEqual(saved_user.company, 'Natixis')
-#         self.assertEqual(saved_user.email, 'arnaudnorel95@gmail.com')
-#         self.assertFalse(saved_user.is_staff)
-#         #Check the password is hashed in database
-#         self.assertNotEqual(saved_user.password, 'azrtyuiop')
-#         self.assertTrue(saved_user.check_password('azrtyuiop'))
+    def test_create_customer(self):
+        """
+            Ensure we can't create a new Customer according to the ReadOnly Viewset- API side
+        """
+        response = self.client.post(self.url, data=self.sample_customer_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(Customers.objects.count(), 0)
