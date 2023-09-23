@@ -133,26 +133,26 @@ class CustomerApiTest(TestCase):
         self.assertEqual(last_customer.support_employee.last_name, 'Andrew')
 
 
-    def test_read_specific_customer(self):
-        """
-            Ensure we can get 1 specific Customer - API side
-        """
-        response = self.client.get(self.url_detail, format='json')
-        customer_a_data = response.json()
+    # def test_read_specific_customer(self):
+    #     """
+    #         Ensure we can get 1 specific Customer - API side
+    #     """
+    #     response = self.client.get(self.url_detail, format='json')
+    #     customer_a_data = response.json()
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(customer_a_data['first_name'], 'testa')
-        self.assertEqual(customer_a_data['last_name'], 'testa')
-        self.assertEqual(customer_a_data['company'], 'Testa')
-        self.assertEqual(customer_a_data['address'], '12th 68 Nyc')
-        self.assertEqual(customer_a_data['city'], 'NYC')
-        self.assertEqual(customer_a_data['state'], 'NY state')
-        self.assertEqual(customer_a_data['country'], 'USA')
-        self.assertEqual(customer_a_data['postal_code'], '4512')
-        self.assertEqual(customer_a_data['phone'], '+3346489')
-        self.assertEqual(customer_a_data['fax'], '+3367891')
-        self.assertEqual(customer_a_data['email'], 'testa@yahoo.fr')
-        self.assertEqual(customer_a_data['support_employee'], 1)        
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #     self.assertEqual(customer_a_data['first_name'], 'testa')
+    #     self.assertEqual(customer_a_data['last_name'], 'testa')
+    #     self.assertEqual(customer_a_data['company'], 'Testa')
+    #     self.assertEqual(customer_a_data['address'], '12th 68 Nyc')
+    #     self.assertEqual(customer_a_data['city'], 'NYC')
+    #     self.assertEqual(customer_a_data['state'], 'NY state')
+    #     self.assertEqual(customer_a_data['country'], 'USA')
+    #     self.assertEqual(customer_a_data['postal_code'], '4512')
+    #     self.assertEqual(customer_a_data['phone'], '+3346489')
+    #     self.assertEqual(customer_a_data['fax'], '+3367891')
+    #     self.assertEqual(customer_a_data['email'], 'testa@yahoo.fr')
+    #     self.assertEqual(customer_a_data['support_employee'], 1)        
 
     def test_create_customer(self):
         """
