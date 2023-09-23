@@ -30,7 +30,7 @@ jobs:
       run: docker-compose -f ./docker-compose.yml ps
 
     - name: Run Migrations for Tests
-      run: python manage.py migrate --database=test
+      run: python manage.py migrate
 
     - name: Run Tests
       run: python manage.py test

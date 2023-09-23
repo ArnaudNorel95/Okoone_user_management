@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
 
     # For the initial sample.db uncomment this database
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'sample.db',
-    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'sample.db',
+    # },
 
     # For a postgresql sample_db uncomment this database
     # This one is used for tests although
-    'test': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'sample_db',
         'USER': 'arno',
