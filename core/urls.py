@@ -20,10 +20,11 @@ from django.urls import path, include
 from rest_framework import routers
 from apps.management.views import *
 
+# here we add the routes created with serializers
 router = routers.SimpleRouter()
 router.register('customers', CustomersViewSet, basename='customers')
 router.register('artists', ArtistsViewSet, basename='artists')
-
+router.register('employees', EmployeesViewSet, basename='employees')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

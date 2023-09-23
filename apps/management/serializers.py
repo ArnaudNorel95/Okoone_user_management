@@ -1,4 +1,4 @@
-from .models import Customers, Artists
+from .models import Customers, Artists, Employees
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.serializers import ValidationError
 
@@ -10,4 +10,9 @@ class CustomersSerializer(ModelSerializer):
 class ArtistsSerializer(ModelSerializer):
     class Meta:
         model = Artists
+        fields = "__all__"
+
+class EmployeesSerializer(ModelSerializer):
+    class Meta:
+        model = Employees
         fields = "__all__"

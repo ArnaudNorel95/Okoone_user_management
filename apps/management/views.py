@@ -20,7 +20,16 @@ class ArtistsViewSet(ModelViewSet):
     serializer_class = ArtistsSerializer
 
     def get_queryset(self):
-        # Return the totality of the customers
+        # Return the totality of the artists
         queryset = Artists.objects.all()
+
+        return queryset
+    
+class EmployeesViewSet(ModelViewSet):
+    serializer_class = EmployeesSerializer
+
+    def get_queryset(self):
+        # Return the totality of the artists
+        queryset = Employees.objects.all()
 
         return queryset

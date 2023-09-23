@@ -75,11 +75,25 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+
+    # For the initial sample.db uncomment this database
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'sample.db',
+    },
+
+    # For a postgresql sample_db uncomment this database
+    # This one is used for tests although
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'sample_db',
+        'USER': 'arno',
+        'PASSWORD': 'EmployeeManagement',
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
+
 
 
 # Password validation
