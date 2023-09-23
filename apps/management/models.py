@@ -4,7 +4,6 @@ from django.db import models
 class Employees(models.Model):
     '''
         Informations about the table employees
-        Notice that CamelCase is exceptionnaly used for matching with sample.db
     '''
     id          = models.AutoField(primary_key=True, db_column="EmployeeId")
     first_name  = models.CharField(max_length=40, null=False, db_column="FirstName")
@@ -23,11 +22,16 @@ class Employees(models.Model):
 
     def __str__(self):
         return self.LastName
+    
+    class Meta:
+        '''
+            If we want to use the sample.db as it was given
+        '''
+        db_table = "employees"
 
 class Customers(models.Model):
     '''
         Informations about the table customers
-        Notice that CamelCase is exceptionnaly used for matching with sample.db
     '''
     id          = models.AutoField(primary_key=True, db_column='CustomerId')
     first_name  = models.CharField(max_length=40, null=False, db_column="FirstName")
@@ -46,6 +50,12 @@ class Customers(models.Model):
     def __str__(self):
         return self.LastName
     
+    class Meta:
+        '''
+            If we want to use the sample.db as it was given
+        '''
+        db_table = "customers"
+    
 class Artists(models.Model):
     '''
         Informations about the table artists
@@ -57,3 +67,8 @@ class Artists(models.Model):
     def __str__(self):
         return self.name
     
+    class Meta:
+        '''
+            If we want to use the sample.db as it was given
+        '''
+        db_table = "artists"
