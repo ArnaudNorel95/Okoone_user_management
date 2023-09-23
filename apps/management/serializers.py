@@ -1,8 +1,13 @@
-from .models import Customers
+from .models import Customers, Artists
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.serializers import ValidationError
 
 class CustomersSerializer(ModelSerializer):
     class Meta:
         model = Customers
-        fields = ["id", "first_name", "last_name", "company"]
+        fields = "__all__"
+
+class ArtistsSerializer(ModelSerializer):
+    class Meta:
+        model = Artists
+        fields = "__all__"
