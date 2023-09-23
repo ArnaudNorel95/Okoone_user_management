@@ -3,8 +3,6 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 from .models import Customers, Employees, Artists
-from django.contrib.auth import hashers
-from datetime import datetime
 # Create your tests here.
 
 class CustomerModelTest(TestCase):
